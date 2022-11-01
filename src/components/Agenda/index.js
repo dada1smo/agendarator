@@ -7,11 +7,13 @@ import {
   PDFViewer,
   Font,
 } from '@react-pdf/renderer';
-import Page from '../Page';
+import A5Page from '../Formats/A5';
 import YearCover from '../YearPage';
 import Planner from '../Planner';
 import generateYearData from '../../utils/data';
 import Daily from '../Daily';
+import DottedPage from '../DottedPage';
+import CurrentCalendar from '../CurrentCalendar';
 
 Font.register({
   family: 'Learning Curve',
@@ -35,9 +37,11 @@ Font.register({
   ],
 });
 
+Font.registerHyphenationCallback((word) => [word]);
+
 const styles = StyleSheet.create({
   viewer: {
-    width: '100vw', //the pdf viewer will take up all of the width and height
+    width: '100vw',
     height: '100vh',
     border: 'none',
   },
@@ -86,41 +90,46 @@ const Agenda = ({ year, holidays }) => {
     };
   });
 
-  console.log(daily);
-
   return (
     <PDFViewer style={styles.viewer}>
       <Document>
-        <Page>
+        <A5Page>
           <YearCover year={year} />
-        </Page>
-        {planner
-          .filter((item, index) => index < 2)
-          .map((item) => {
-            return item.pages.map((page, index) => {
-              return (
-                <Page key={`${item.month}${index + 1}`}>
-                  <Planner
-                    month={item.month}
-                    monthNumber={item.monthNumber}
-                    weeks={item.weeks}
-                    calendarDays={page}
-                  />
-                </Page>
-              );
-            });
-          })}
-        {daily
-          .filter((item, index) => index === 0)
-          .map((item) => {
-            return item.pages.map((page, index) => {
-              return (
-                <Page key={`${item.month}${index + 1}`}>
-                  <Daily month={item.month} days={page} year={year} />
-                </Page>
-              );
-            });
-          })}
+        </A5Page>
+        <A5Page />
+        <A5Page>
+          <DottedPage />
+        </A5Page>
+        <A5Page>
+          <CurrentCalendar
+            year={year}
+            yearData={yearData}
+            holidays={holidays}
+          />
+        </A5Page>
+        {planner.map((item) => {
+          return item.pages.map((page, index) => {
+            return (
+              <A5Page key={`${item.month}${index + 1}`}>
+                <Planner
+                  month={item.month}
+                  monthNumber={item.monthNumber}
+                  weeks={item.weeks}
+                  calendarDays={page}
+                />
+              </A5Page>
+            );
+          });
+        })}
+        {daily.map((item) => {
+          return item.pages.map((page, index) => {
+            return (
+              <A5Page key={`${item.month}${index + 1}`}>
+                <Daily month={item.month} days={page} year={year} />
+              </A5Page>
+            );
+          });
+        })}
       </Document>
     </PDFViewer>
   );

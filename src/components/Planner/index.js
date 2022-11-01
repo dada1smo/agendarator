@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from '@react-pdf/renderer';
 import { colors } from '../../../styles/styles';
 import Dots from '../Dots';
-import Page from '../Page';
+import Page from '../Formats/A5';
 
 const styles = StyleSheet.create({
   planner: {
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
     flexDirection: 'row',
-    // border: `1.2pt solid ${colors.black30}`,
   },
   calendarColumn: {
     width: '25%',
@@ -63,24 +62,25 @@ const styles = StyleSheet.create({
   },
   calendarMonthNumber: {
     fontFamily: 'Inter',
-    fontSize: '60pt',
+    fontSize: '52pt',
     fontWeight: 'bold',
     lineHeight: 1.1,
     color: colors.black30,
-    textAlign: 'right',
+    textAlign: 'center',
     letterSpacing: '-1pt',
     marginTop: '-24pt',
-    marginRight: '-2pt',
+    marginRight: '-4pt',
   },
   calendarMonth: {
     fontFamily: 'Inter',
-    fontSize: '11pt',
+    fontSize: '10pt',
     fontWeight: 'bold',
     lineHeight: 1.5,
     color: colors.black30,
-    textAlign: 'right',
+    textAlign: 'center',
     letterSpacing: '1pt',
     textTransform: 'uppercase',
+    marginLeft: '10pt',
   },
   image: {
     position: 'absolute',
@@ -206,7 +206,7 @@ function Planner({ month, monthNumber, weeks, calendarDays }) {
               {monthNumber < 10 ? `0${monthNumber}` : `${monthNumber}`}
             </Text>
             <Text style={styles.calendarMonth}>{month}</Text>
-            <Dots columns={7} dots={24} height={'100mm'} />
+            <Dots columns={7} dots={24} height="100mm" />
             <Image style={styles.image} src="/images/flower2.jpg" alt="" />
           </View>
         )}

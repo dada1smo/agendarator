@@ -1,0 +1,65 @@
+{
+  "year": 2022,
+  "holidays": [
+    {
+      "month": 1,
+      "day": 1,
+      "holiday": "Confraternização Universal"
+    },
+    {
+      "month": 3,
+      "day": 1,
+      "holiday": "Carnaval"
+    },
+    {
+      "month": 4,
+      "day": 15,
+      "holiday": "Sexta-Feira Santa"
+    },
+    {
+      "month": 4,
+      "day": 17,
+      "holiday": "Domingo de Páscoa"
+    },
+    {
+      "month": 4,
+      "day": 21,
+      "holiday": "Tiradentes"
+    },
+    {
+      "month": 5,
+      "day": 1,
+      "holiday": "Dia do Trabalhador"
+    },
+    {
+      "month": 6,
+      "day": 16,
+      "holiday": "Corpus Christi"
+    },
+    {
+      "month": 9,
+      "day": 7,
+      "holiday": "Independência do Brasil"
+    },
+    {
+      "month": 10,
+      "day": 12,
+      "holiday": "Nossa Senhora Aparecida"
+    },
+    {
+      "month": 11,
+      "day": 2,
+      "holiday": "Finados"
+    },
+    {
+      "month": 11,
+      "day": 15,
+      "holiday": "Proclamação da República"
+    },
+    {
+      "month": 12,
+      "day": 15,
+      "holiday": "Natal"
+    }
+  ]
+}

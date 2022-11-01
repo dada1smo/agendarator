@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Page = ({ children }) => {
+const A5Page = ({ children }) => {
   return (
     <PdfPage size="A5" style={styles.page}>
       {children}
@@ -19,4 +19,4 @@ const Page = ({ children }) => {
   );
 };
 
-export default Page;
+export default A5Page;

@@ -111,3 +111,5 @@ export default function generateYearData(year, holidays) {
 
   return daysInMonth;
 }
+
+export const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
