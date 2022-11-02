@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-const PDFViewer = dynamic(() => import('../Agenda/index'), {
+const PDFViewer = dynamic(() => import('../Agenda/A5/index'), {
   ssr: false,
 });
 
