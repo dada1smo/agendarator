@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   footer: {
     marginTop: '12mm',
     paddingTop: '4mm',
-    borderTop: `1.2pt solid ${colors.black30}`,
+    borderTop: `1pt solid ${colors.black30}`,
   },
   holidays: {
     fontFamily: 'Inter',
@@ -153,7 +153,7 @@ const CurrentCalendar = ({ year, yearData, holidays }) => {
                 <View
                   style={{
                     ...styles.calendarTableRow,
-                    borderBottom: `1.2pt solid ${colors.black30}`,
+                    borderBottom: `1pt solid ${colors.black30}`,
                   }}
                 >
                   {weekDays.map((day, index) => {
@@ -178,9 +178,7 @@ const CurrentCalendar = ({ year, yearData, holidays }) => {
                         key={index}
                         style={{
                           ...styles.calendarTableCell,
-                          border: holiday
-                            ? `1.2pt solid ${colors.black15}`
-                            : '',
+                          border: holiday ? `1pt solid ${colors.black15}` : '',
                           backgroundColor: holiday ? colors.black15 : '',
                         }}
                       >
@@ -195,9 +193,6 @@ const CurrentCalendar = ({ year, yearData, holidays }) => {
         })}
       </View>
       <View style={styles.footer}>
-        {/* <View>
-          <Text style={styles.holidays}>Feriados</Text>
-        </View> */}
         <View
           style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}
         >

@@ -1,18 +1,3 @@
-const model = [
-  {
-    month: 'janeiro',
-    number: 1,
-    amount: 31,
-    days: [
-      {
-        day: 1,
-        weekDay: 'segunda',
-        holiday: '',
-      },
-    ],
-  },
-];
-
 const months = [
   {
     month: 'janeiro',
@@ -79,11 +64,15 @@ function formatDay(day) {
 }
 
 function checkHoliday(month, day, holidays) {
-  const result = holidays.find(
-    (holiday) => holiday.month === month && holiday.day === day
-  );
+  if (holidays) {
+    const result = holidays.find(
+      (holiday) => holiday.month === month && holiday.day === day
+    );
 
-  return result ? result.holiday : '';
+    return result ? result.holiday : '';
+  }
+
+  return '';
 }
 
 export default function generateYearData(year, holidays) {

@@ -84,9 +84,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function Daily({ month, days, year }) {
-  const lines = [...Array(19).keys()];
+const lines = [...Array(19).keys()];
 
+function Daily({ month, days, year }) {
   return (
     <View style={{ position: 'relative', height: '100%' }}>
       <View style={styles.header}>

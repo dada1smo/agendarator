@@ -3,9 +3,12 @@ import Image from 'next/image';
 import fs from 'fs';
 import dynamic from 'next/dynamic';
 
-const Agenda = dynamic(() => import('../../src/components/Agenda/index'), {
-  ssr: false,
-});
+const AgendaA5 = dynamic(
+  () => import('../../../src/components/Agenda/A5/index'),
+  {
+    ssr: false,
+  }
+);
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('public/years');
@@ -49,9 +52,9 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function AgendaFull({ year, lastYear, nextYear }) {
+export default function Agenda({ year, lastYear, nextYear }) {
   return (
-    <Agenda
+    <AgendaA5
       year={year.year}
       holidays={year.holidays}
       lastYear={lastYear}
