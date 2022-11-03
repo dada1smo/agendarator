@@ -1,4 +1,5 @@
 import { Image, StyleSheet, Text, View } from '@react-pdf/renderer';
+import { Fragment } from 'react';
 import { colors } from '../../../styles/styles';
 import Dots from '../Dots';
 import Logo from '../Logo';
@@ -95,39 +96,56 @@ function Daily({ month, days, year }) {
         <Image style={styles.image} src="/images/flower3.jpg" alt="" />
       </View>
       <View style={styles.dailyRow}>
-        {days.map((day, index) => {
+        {days.map((day, index, arr) => {
           return (
-            <View
-              key={index}
-              style={{
-                ...styles.dailyColumn,
-                padding: index === 0 ? '0 4mm 0 0' : '0 0 0 4mm',
-              }}
-            >
-              <View style={styles.dailyHeader}>
-                <Text style={styles.day}>{day.day}</Text>
-                <Text style={styles.weekDay}>{day.weekDay}</Text>
-              </View>
-              {lines.map((line, lineIndex) => {
-                return (
-                  <View
-                    key={line}
-                    style={{
-                      ...styles.line,
-                      marginBottom: lineIndex === lines.length - 1 ? 0 : '6mm',
-                    }}
-                  />
-                );
-              })}
-              <Text
+            <Fragment key={index}>
+              <View
                 style={{
-                  ...styles.holiday,
-                  textAlign: index === 0 ? 'left' : 'right',
+                  ...styles.dailyColumn,
+                  padding: index === 0 ? '0 4mm 0 0' : '0 0 0 4mm',
                 }}
               >
-                {day.holiday}
-              </Text>
-            </View>
+                <View style={styles.dailyHeader}>
+                  <Text style={styles.day}>{day.day}</Text>
+                  <Text style={styles.weekDay}>{day.weekDay}</Text>
+                </View>
+                {lines.map((line, lineIndex) => {
+                  return (
+                    <View
+                      key={line}
+                      style={{
+                        ...styles.line,
+                        marginBottom:
+                          lineIndex === lines.length - 1 ? 0 : '6mm',
+                      }}
+                    />
+                  );
+                })}
+                <Text
+                  style={{
+                    ...styles.holiday,
+                    textAlign: index === 0 ? 'left' : 'right',
+                  }}
+                >
+                  {day.holiday}
+                </Text>
+              </View>
+              {arr.length % 2 !== 0 && index === arr.length - 1 && (
+                <View
+                  style={{
+                    ...styles.dailyColumn,
+                    padding: index === 0 ? '0 4mm 0 0' : '0 0 0 4mm',
+                  }}
+                >
+                  <Dots
+                    columns={11}
+                    dots={28}
+                    height="128mm"
+                    padding="10mm 2mm 0 2mm"
+                  />
+                </View>
+              )}
+            </Fragment>
           );
         })}
       </View>

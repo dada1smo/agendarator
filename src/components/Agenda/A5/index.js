@@ -17,6 +17,7 @@ import CurrentCalendar from '../../CurrentCalendar';
 import AdjacentCalendars from '../../AdjacentCalendars';
 import PersonalData from '../../PersonalData';
 import MonthCover from '../../MonthCover';
+import Credits from '../../Credits';
 
 Font.register({
   family: 'Learning Curve',
@@ -175,6 +176,9 @@ const Agenda = ({ year, holidays, lastYear, nextYear }) => {
             </A5Page>
           );
         })}
+        <A5Page>
+          <Credits year={year} />
+        </A5Page>
       </Document>
     </PDFViewer>
   );
