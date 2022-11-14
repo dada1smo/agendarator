@@ -125,7 +125,6 @@ const CurrentCalendar = ({ year, yearData, holidays }) => {
     return index > 10 ? '0 0 0 0' : '0 0 8m 0';
   };
 
-  console.log(calendarDays);
   return (
     <View style={{ position: 'relative', height: '100%' }}>
       <View style={styles.header}>

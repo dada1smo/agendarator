@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
 const finalPages = [...Array(29).keys()];
 
-const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
+const AgendaA4 = ({ year, holidays, lastYear, nextYear }) => {
   const yearData = generateYearData(year, holidays);
 
   const planner = yearData.map((month) => {
@@ -177,4 +177,4 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
   );
 };
 
-export default AgendaA5;
+export default AgendaA4;
