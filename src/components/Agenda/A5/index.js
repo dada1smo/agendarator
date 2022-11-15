@@ -93,7 +93,7 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
     <PDFViewer style={styles.viewer}>
       <Document>
         <A5Page>
-          <YearCover year={year} />
+          <YearCover year={year} format="A5" />
         </A5Page>
         <A5Page />
         <A5Page>
@@ -141,7 +141,7 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
             <Fragment key={index}>
               <>
                 <A5Page>
-                  <MonthCover month={item.month} index={index} />
+                  <MonthCover month={item.month} index={index} format="A5" />
                 </A5Page>
                 <A5Page>
                   <DottedPage />
@@ -150,7 +150,12 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
               {item.pages.map((page, index, arr) => {
                 return (
                   <A5Page key={`${item.month}${index + 1}`}>
-                    <Daily month={item.month} days={page} year={year} />
+                    <Daily
+                      month={item.month}
+                      days={page}
+                      year={year}
+                      format="A5"
+                    />
                   </A5Page>
                 );
               })}

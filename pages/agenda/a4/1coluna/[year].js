@@ -2,10 +2,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import fs from 'fs';
 import dynamic from 'next/dynamic';
-import Loading from '../../../src/components/Loading';
+import Loading from '../../../../src/components/Loading';
 
-const AgendaA5 = dynamic(
-  () => import('../../../src/components/Agenda/A5/index'),
+const AgendaA4 = dynamic(
+  () => import('../../../../src/components/Agenda/A4/index'),
   {
     ssr: false,
     loading: Loading,
@@ -56,11 +56,12 @@ export async function getStaticProps({ params }) {
 
 export default function Agenda({ year, lastYear, nextYear }) {
   return (
-    <AgendaA5
+    <AgendaA4
       year={year.year}
       holidays={year.holidays}
       lastYear={lastYear}
       nextYear={nextYear}
+      columns={1}
     />
   );
 }

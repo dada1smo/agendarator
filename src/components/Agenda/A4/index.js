@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Document, StyleSheet, PDFViewer, Font } from '@react-pdf/renderer';
-import A5Page from '../../Formats/A5';
 import YearCover from '../../YearPage';
 import Planner from '../../Planner';
 import generateYearData from '../../../utils/data';
@@ -11,6 +10,7 @@ import AdjacentCalendars from '../../AdjacentCalendars';
 import PersonalData from '../../PersonalData';
 import MonthCover from '../../MonthCover';
 import Credits from '../../Credits';
+import A4Page from '../../Formats/A4';
 
 Font.register({
   family: 'Learning Curve',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
 const finalPages = [...Array(29).keys()];
 
-const AgendaA4 = ({ year, holidays, lastYear, nextYear }) => {
+const AgendaA4 = ({ year, holidays, lastYear, nextYear, columns, theme }) => {
   const yearData = generateYearData(year, holidays);
 
   const planner = yearData.map((month) => {
@@ -80,23 +80,32 @@ const AgendaA4 = ({ year, holidays, lastYear, nextYear }) => {
   });
 
   const daily = yearData.map((month) => {
-    return {
-      month: month.month,
-      pages: month.days.reduce((result, value, index, array) => {
-        if (index % 2 === 0) result.push(array.slice(index, index + 2));
-        return result;
-      }, []),
-    };
+    return columns === 2
+      ? {
+          month: month.month,
+          pages: month.days.reduce((result, value, index, array) => {
+            if (index % 2 === 0) result.push(array.slice(index, index + 2));
+            return result;
+          }, []),
+        }
+      : {
+          month: month.month,
+          pages: month.days.map((day) => {
+            return [day];
+          }),
+        };
   });
+
+  console.log(daily);
 
   return (
     <PDFViewer style={styles.viewer}>
       <Document>
-        <A5Page>
-          <YearCover year={year} />
-        </A5Page>
-        <A5Page />
-        <A5Page>
+        {/* <A4Page>
+          <YearCover year={year} format="A4" />
+        </A4Page>
+        <A4Page /> */}
+        {/* <A5Page>
           <PersonalData format="a5" />
         </A5Page>
         <A5Page>
@@ -132,37 +141,44 @@ const AgendaA4 = ({ year, holidays, lastYear, nextYear }) => {
               </A5Page>
             );
           });
-        })}
-        <A5Page>
+        })} */}
+        <A4Page>
           <DottedPage />
-        </A5Page>
+        </A4Page>
         {daily.map((item, index) => {
           return (
             <Fragment key={index}>
               <>
-                <A5Page>
-                  <MonthCover month={item.month} index={index} />
-                </A5Page>
-                <A5Page>
+                <A4Page>
+                  <MonthCover month={item.month} index={index} format="A4" />
+                </A4Page>
+                <A4Page>
                   <DottedPage />
-                </A5Page>
+                </A4Page>
               </>
               {item.pages.map((page, index, arr) => {
                 return (
-                  <A5Page key={`${item.month}${index + 1}`}>
-                    <Daily month={item.month} days={page} year={year} />
-                  </A5Page>
+                  <A4Page key={`${item.month}${index + 1}`}>
+                    <Daily
+                      month={item.month}
+                      days={page}
+                      year={year}
+                      format="A4"
+                      columns={columns}
+                      theme={theme}
+                    />
+                  </A4Page>
                 );
               })}
               {item.pages.length % 2 !== 0 && (
-                <A5Page>
+                <A4Page>
                   <DottedPage />
-                </A5Page>
+                </A4Page>
               )}
             </Fragment>
           );
         })}
-        {finalPages.map((page) => {
+        {/* {finalPages.map((page) => {
           return (
             <A5Page key={page}>
               <DottedPage />
@@ -171,7 +187,7 @@ const AgendaA4 = ({ year, holidays, lastYear, nextYear }) => {
         })}
         <A5Page>
           <Credits year={year} />
-        </A5Page>
+        </A5Page> */}
       </Document>
     </PDFViewer>
   );

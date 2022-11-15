@@ -2,7 +2,7 @@ import { Page as PdfPage, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
-    padding: '31mm 45mm 31mm',
+    padding: '31mm 31mm 45mm',
     position: 'relative',
   },
   text: {
@@ -18,4 +18,4 @@ const A4Page = ({ children }) => {
   );
 };
 
-export default A5Page;
+export default A4Page;
