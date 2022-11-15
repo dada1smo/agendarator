@@ -10,6 +10,10 @@ function MyApp({ Component, pageProps }) {
           overflow: auto;
           height: 100vh;
         }
+
+        a {
+          text-decoration: underline;
+        }
       `}</style>
     </div>
   );
