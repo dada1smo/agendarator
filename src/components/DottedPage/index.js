@@ -11,11 +11,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const DottedPage = () => {
+const DottedPage = ({ theme }) => {
   return (
     <View style={{ position: 'relative', height: '100%' }}>
       <Dots columns={24} dots={32} height="188mm" padding="0 0 0 0" />
-      <Image style={styles.footer} src="/images/flower4.jpg" alt="" />
+      {theme !== 'neutral' && (
+        <Image style={styles.footer} src="/images/flower4.jpg" alt="" />
+      )}
     </View>
   );
 };

@@ -18,6 +18,14 @@ const stylesA5 = StyleSheet.create({
     lineHeight: 1.1,
     color: colors.black60,
   },
+  monthNeutral: {
+    fontFamily: 'Inter',
+    fontSize: '14pt',
+    lineHeight: 1.1,
+    fontWeight: 'bold',
+    color: colors.black30,
+    textTransform: 'capitalize',
+  },
   image: {
     position: 'absolute',
     bottom: 0,
@@ -99,6 +107,14 @@ const stylesA4 = StyleSheet.create({
     lineHeight: 1.1,
     color: colors.black60,
   },
+  monthNeutral: {
+    fontFamily: 'Inter',
+    fontSize: '14pt',
+    lineHeight: 1.1,
+    fontWeight: 'bold',
+    color: colors.black30,
+    textTransform: 'capitalize',
+  },
   image: {
     position: 'absolute',
     bottom: 0,
@@ -177,9 +193,19 @@ function Daily({ month, days, year, format, columns, theme }) {
   return (
     <View style={{ position: 'relative', height: '100%' }}>
       <View style={styles.header}>
-        <Text style={styles.month}>{month}</Text>
-        <Dots columns={15} dots={1} padding={'2mm 24mm 0 6mm'} />
-        <Image style={styles.image} src="/images/flower3.jpg" alt="" />
+        <Text style={theme === 'neutral' ? styles.monthNeutral : styles.month}>
+          {month}
+        </Text>
+        {theme !== 'neutral' && (
+          <>
+            <Dots
+              columns={theme === 'neutral' ? 20 : 15}
+              dots={1}
+              padding={theme === 'neutral' ? '2mm 0 0 6mm' : '2mm 24mm 0 6mm'}
+            />
+            <Image style={styles.image} src="/images/flower3.jpg" alt="" />
+          </>
+        )}
       </View>
       <View style={styles.dailyRow}>
         {days.map((day, index, arr) => {
@@ -188,7 +214,7 @@ function Daily({ month, days, year, format, columns, theme }) {
               <View
                 style={{
                   ...styles.dailyColumn,
-                  width: columns === 2 ? styles.dailyColumn.width : '100%',
+                  width: columns === 2 ? '50%' : '100%',
                   padding: index === 0 ? '0 4mm 0 0' : '0 0 0 4mm',
                 }}
               >
@@ -225,6 +251,7 @@ function Daily({ month, days, year, format, columns, theme }) {
                   <View
                     style={{
                       ...styles.dailyColumn,
+                      width: format === 'A4' ? '50%' : '100%',
                       padding: index === 0 ? '0 4mm 0 0' : '0 0 0 4mm',
                     }}
                   >
@@ -244,9 +271,18 @@ function Daily({ month, days, year, format, columns, theme }) {
         <FooterCientista year={year} />
       ) : (
         <View style={styles.footer}>
-          <Logo />
-          <Text style={styles.year}>{year}</Text>
-          <Dots columns={18} dots={1} padding={'0 0 0 6mm'} />
+          {theme !== 'neutral' && <Logo />}
+          <Text
+            style={{
+              ...styles.year,
+              marginLeft: theme === 'neutral' ? '0' : '4mm',
+            }}
+          >
+            {year}
+          </Text>
+          {theme !== 'neutral' && (
+            <Dots columns={18} dots={1} padding={'0 0 0 6mm'} />
+          )}
         </View>
       )}
     </View>

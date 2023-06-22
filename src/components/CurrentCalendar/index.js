@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CurrentCalendar = ({ year, yearData, holidays }) => {
+const CurrentCalendar = ({ year, yearData, holidays, theme }) => {
   const calendarDays = yearData.map((month) => {
     if (month.days[0].position !== 1) {
       let i = month.days[0].position;
@@ -129,8 +129,12 @@ const CurrentCalendar = ({ year, yearData, holidays }) => {
     <View style={{ position: 'relative', height: '100%' }}>
       <View style={styles.header}>
         <Text style={styles.year}>{year}</Text>
-        <Dots columns={15} dots={1} padding="2mm 24mm 0 6mm" />
-        <Image style={styles.image} src="/images/flower3.jpg" alt="" />
+        {theme !== 'neutral' && (
+          <>
+            <Dots columns={15} dots={1} padding="2mm 24mm 0 6mm" />
+            <Image style={styles.image} src="/images/flower3.jpg" alt="" />
+          </>
+        )}
       </View>
       <View style={styles.calendarGrid}>
         {calendarDays.map(({ month, days }, index) => {

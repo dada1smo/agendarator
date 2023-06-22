@@ -20,11 +20,26 @@ const stylesA5 = StyleSheet.create({
     lineHeight: 1,
     color: colors.black30,
   },
+  yearNeutral: {
+    fontFamily: 'Inter',
+    fontWeight: 'bold',
+    fontSize: '72pt',
+    lineHeight: 1,
+    color: colors.black30,
+  },
   agenda: {
     fontFamily: 'Learning Curve',
     fontSize: '60pt',
     lineHeight: 1.2,
     color: colors.black60,
+  },
+  agendaNeutral: {
+    fontFamily: 'Inter',
+    fontSize: '28pt',
+    lineHeight: 1.2,
+    color: colors.black60,
+    textTransform: 'capitalize',
+    marginTop: '4mm',
   },
 });
 
@@ -47,23 +62,45 @@ const stylesA4 = StyleSheet.create({
     lineHeight: 1,
     color: colors.black30,
   },
+  yearNeutral: {
+    fontFamily: 'Inter',
+    fontWeight: 'bold',
+    fontSize: '72pt',
+    lineHeight: 1,
+    color: colors.black30,
+  },
   agenda: {
     fontFamily: 'Learning Curve',
     fontSize: '60pt',
     lineHeight: 1.2,
     color: colors.black60,
   },
+  agendaNeutral: {
+    fontFamily: 'Inter',
+    fontSize: '48pt',
+    lineHeight: 1.2,
+    color: colors.black60,
+    textTransform: 'capitalize',
+  },
 });
 
-function YearCover({ year, format }) {
+function YearCover({ year, format, theme }) {
   const styles = format === 'A5' ? stylesA5 : stylesA4;
 
   return (
     <View>
-      <Image style={styles.image} src="/images/cover.jpg" alt="" />
+      {theme !== 'neutral' && (
+        <Image style={styles.image} src="/images/cover.jpg" alt="" />
+      )}
       <View style={styles.header}>
-        <Text style={styles.year}>{year}</Text>
-        <Text style={styles.agenda}>agenda</Text>
+        <Text style={theme === 'neutral' ? styles.yearNeutral : styles.year}>
+          {year}
+        </Text>
+        <Text
+          style={theme === 'neutral' ? styles.agendaNeutral : styles.agenda}
+        >
+          agenda
+        </Text>
       </View>
     </View>
   );

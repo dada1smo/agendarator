@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 
 const finalPages = [...Array(29).keys()];
 
-const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
+const AgendaA5 = ({ year, holidays, lastYear, nextYear, theme = '' }) => {
   const yearData = generateYearData(year, holidays);
 
   const planner = yearData.map((month) => {
@@ -98,23 +98,24 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
       <PDFViewer style={styles.viewer}>
         <Document onRender={() => setLoading(false)}>
           <A5Page>
-            <YearCover year={year} format="A5" />
+            <YearCover year={year} format="A5" theme={theme} />
           </A5Page>
           <A5Page />
           <A5Page>
-            <PersonalData format="a5" />
+            <PersonalData format="a5" theme={theme} />
           </A5Page>
           <A5Page>
-            <DottedPage />
+            <DottedPage theme={theme} />
           </A5Page>
           <A5Page>
-            <DottedPage />
+            <DottedPage theme={theme} />
           </A5Page>
           <A5Page>
             <CurrentCalendar
               year={year}
               yearData={yearData}
               holidays={holidays}
+              theme={theme}
             />
           </A5Page>
           <A5Page>
@@ -139,17 +140,22 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
             });
           })}
           <A5Page>
-            <DottedPage />
+            <DottedPage theme={theme} />
           </A5Page>
-          {daily.map((item, index) => {
+          {/* {daily.map((item, index) => {
             return (
               <Fragment key={index}>
                 <>
                   <A5Page>
-                    <MonthCover month={item.month} index={index} format="A5" />
+                    <MonthCover
+                      theme={theme}
+                      month={item.month}
+                      index={index}
+                      format="A5"
+                    />
                   </A5Page>
                   <A5Page>
-                    <DottedPage />
+                    <DottedPage theme={theme} />
                   </A5Page>
                 </>
                 {item.pages.map((page, index, arr) => {
@@ -160,13 +166,14 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
                         days={page}
                         year={year}
                         format="A5"
+                        theme={theme}
                       />
                     </A5Page>
                   );
                 })}
                 {item.pages.length % 2 !== 0 && (
                   <A5Page>
-                    <DottedPage />
+                    <DottedPage theme={theme} />
                   </A5Page>
                 )}
               </Fragment>
@@ -175,13 +182,13 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear }) => {
           {finalPages.map((page) => {
             return (
               <A5Page key={page}>
-                <DottedPage />
+                <DottedPage theme={theme} />
               </A5Page>
             );
           })}
           <A5Page>
             <Credits year={year} />
-          </A5Page>
+          </A5Page> */}
         </Document>
       </PDFViewer>
     </>

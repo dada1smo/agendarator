@@ -21,12 +21,29 @@ const stylesA5 = StyleSheet.create({
     color: colors.black30,
     textAlign: 'center',
   },
+  yearNeutral: {
+    fontFamily: 'Inter',
+    fontWeight: 'bold',
+    fontSize: '128pt',
+    lineHeight: 1,
+    color: colors.black30,
+    letterSpacing: '-2mm',
+  },
   agenda: {
     fontFamily: 'Learning Curve',
     fontSize: '60pt',
     lineHeight: 1.2,
     color: colors.black60,
     textAlign: 'center',
+  },
+  agendaNeutral: {
+    fontFamily: 'Inter',
+    fontSize: '28pt',
+    lineHeight: 1.2,
+    color: colors.black60,
+    textTransform: 'capitalize',
+    marginLeft: '4mm',
+    marginTop: '4mm',
   },
 });
 
@@ -50,6 +67,13 @@ const stylesA4 = StyleSheet.create({
     color: colors.black30,
     textAlign: 'center',
   },
+  yearNeutral: {
+    fontFamily: 'Inter',
+    fontWeight: 'bold',
+    fontSize: '148pt',
+    lineHeight: 1,
+    color: colors.black30,
+  },
   agenda: {
     fontFamily: 'Learning Curve',
     fontSize: '80pt',
@@ -57,19 +81,32 @@ const stylesA4 = StyleSheet.create({
     color: colors.black60,
     textAlign: 'center',
   },
+  agendaNeutral: {
+    fontFamily: 'Inter',
+    fontSize: '48pt',
+    lineHeight: 1.2,
+    color: colors.black60,
+    textTransform: 'capitalize',
+  },
 });
 
-function MonthCover({ month, index, format }) {
+function MonthCover({ month, index, format, theme }) {
   const styles = format === 'A5' ? stylesA5 : stylesA4;
 
   return (
     <View>
-      <Image style={styles.image} src="/images/cover.jpg" alt="" />
+      {theme !== 'neutral' && (
+        <Image style={styles.image} src="/images/cover.jpg" alt="" />
+      )}
       <View style={styles.header}>
-        <Text style={styles.year}>
+        <Text style={theme === 'neutral' ? styles.yearNeutral : styles.year}>
           {index < 9 ? `0${index + 1}` : `${index + 1}`}
         </Text>
-        <Text style={styles.agenda}>{month}</Text>
+        <Text
+          style={theme === 'neutral' ? styles.agendaNeutral : styles.agenda}
+        >
+          {month}
+        </Text>
       </View>
     </View>
   );

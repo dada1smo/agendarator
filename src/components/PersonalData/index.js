@@ -199,13 +199,17 @@ const dataFields = [
 
 const lines = [...Array(4).keys()];
 
-const PersonalData = ({ format }) => {
+const PersonalData = ({ format, theme }) => {
   return (
     <View style={{ position: 'relative', height: '100%' }}>
       <View style={styles.header}>
         <Text style={styles.heading}>Dados pessoais</Text>
-        <Dots columns={8} dots={1} padding="2mm 24mm 0 2mm" />
-        <Image style={styles.image} src="/images/flower3.jpg" alt="" />
+        {theme !== 'neutral' && (
+          <>
+            <Dots columns={8} dots={1} padding="2mm 24mm 0 2mm" />
+            <Image style={styles.image} src="/images/flower3.jpg" alt="" />
+          </>
+        )}
       </View>
       <View style={styles.rows}>
         {dataFields.map(({ fields, heading }, index) => {
@@ -227,7 +231,15 @@ const PersonalData = ({ format }) => {
           );
         })}
         <View style={{ width: '100%' }}>
-          <Text style={styles.obs}>Observações</Text>
+          <Text
+            style={
+              theme === 'neutral'
+                ? { ...styles.label, fontWeight: 'bold', marginBottom: '4mm' }
+                : styles.obs
+            }
+          >
+            Observações
+          </Text>
         </View>
         {lines.map((line, lineIndex) => {
           return (
