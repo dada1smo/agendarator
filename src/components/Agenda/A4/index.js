@@ -11,6 +11,7 @@ import PersonalData from '../../PersonalData';
 import MonthCover from '../../MonthCover';
 import Credits from '../../Credits';
 import A4Page from '../../Formats/A4';
+import Loading from '../../Loading';
 
 Font.register({
   family: 'Learning Curve',
@@ -96,98 +97,103 @@ const AgendaA4 = ({ year, holidays, lastYear, nextYear, columns, theme }) => {
         };
   });
 
+  const [loading, setLoading] = useState(true);
+
   return (
-    <PDFViewer style={styles.viewer}>
-      <Document>
-        {/* <A4Page>
-          <YearCover year={year} format="A4" />
-        </A4Page>
-        <A4Page /> */}
-        {/* <A5Page>
-          <PersonalData format="a5" />
-        </A5Page>
-        <A5Page>
-          <DottedPage />
-        </A5Page>
-        <A5Page>
-          <DottedPage />
-        </A5Page>
-        <A5Page>
-          <CurrentCalendar
-            year={year}
-            yearData={yearData}
-            holidays={holidays}
-          />
-        </A5Page>
-        <A5Page>
-          <AdjacentCalendars
-            currentYear={year}
-            lastYear={lastYear}
-            nextYear={nextYear}
-          />
-        </A5Page>
-        {planner.map((item) => {
-          return item.pages.map((page, index) => {
+    <>
+      {loading && <Loading />}
+      <PDFViewer style={styles.viewer}>
+        <Document onRender={() => setLoading(false)}>
+          {/* <A4Page>
+            <YearCover year={year} format="A4" />
+          </A4Page>
+          <A4Page /> */}
+          {/* <A5Page>
+            <PersonalData format="a5" />
+          </A5Page>
+          <A5Page>
+            <DottedPage />
+          </A5Page>
+          <A5Page>
+            <DottedPage />
+          </A5Page>
+          <A5Page>
+            <CurrentCalendar
+              year={year}
+              yearData={yearData}
+              holidays={holidays}
+            />
+          </A5Page>
+          <A5Page>
+            <AdjacentCalendars
+              currentYear={year}
+              lastYear={lastYear}
+              nextYear={nextYear}
+            />
+          </A5Page>
+          {planner.map((item) => {
+            return item.pages.map((page, index) => {
+              return (
+                <A5Page key={`${item.month}${index + 1}`}>
+                  <Planner
+                    month={item.month}
+                    monthNumber={item.monthNumber}
+                    weeks={item.weeks}
+                    calendarDays={page}
+                  />
+                </A5Page>
+              );
+            });
+          })} */}
+          <A4Page>
+            <DottedPage />
+          </A4Page>
+          {daily.map((item, index) => {
             return (
-              <A5Page key={`${item.month}${index + 1}`}>
-                <Planner
-                  month={item.month}
-                  monthNumber={item.monthNumber}
-                  weeks={item.weeks}
-                  calendarDays={page}
-                />
+              <Fragment key={index}>
+                <>
+                  <A4Page>
+                    <MonthCover month={item.month} index={index} format="A4" />
+                  </A4Page>
+                  <A4Page>
+                    <DottedPage />
+                  </A4Page>
+                </>
+                {item.pages.map((page, index, arr) => {
+                  return (
+                    <A4Page key={`${item.month}${index + 1}`}>
+                      <Daily
+                        month={item.month}
+                        days={page}
+                        year={year}
+                        format="A4"
+                        columns={columns}
+                        theme={theme}
+                      />
+                    </A4Page>
+                  );
+                })}
+                {item.pages.length % 2 !== 0 && (
+                  <A4Page>
+                    <DottedPage />
+                  </A4Page>
+                )}
+              </Fragment>
+            );
+          })}
+          {/* {finalPages.map((page) => {
+            return (
+              <A5Page key={page}>
+                <DottedPage />
               </A5Page>
             );
-          });
-        })} */}
-        <A4Page>
-          <DottedPage />
-        </A4Page>
-        {daily.map((item, index) => {
-          return (
-            <Fragment key={index}>
-              <>
-                <A4Page>
-                  <MonthCover month={item.month} index={index} format="A4" />
-                </A4Page>
-                <A4Page>
-                  <DottedPage />
-                </A4Page>
-              </>
-              {item.pages.map((page, index, arr) => {
-                return (
-                  <A4Page key={`${item.month}${index + 1}`}>
-                    <Daily
-                      month={item.month}
-                      days={page}
-                      year={year}
-                      format="A4"
-                      columns={columns}
-                      theme={theme}
-                    />
-                  </A4Page>
-                );
-              })}
-              {item.pages.length % 2 !== 0 && (
-                <A4Page>
-                  <DottedPage />
-                </A4Page>
-              )}
-            </Fragment>
-          );
-        })}
-        {/* {finalPages.map((page) => {
-          return (
-            <A5Page key={page}>
-              <DottedPage />
-            </A5Page>
-          );
-        })}
-        <A5Page>
-          <Credits year={year} />
-        </A5Page> */}
-      </Document>
-    </PDFViewer>
+          })}
+          <A5Page>
+            <Credits year={year} />
+          </A5Page> */}
+        </Document>
+      </PDFViewer>
+    </>
   );
 };
 
