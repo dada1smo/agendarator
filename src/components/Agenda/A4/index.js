@@ -96,8 +96,6 @@ const AgendaA4 = ({ year, holidays, lastYear, nextYear, columns, theme }) => {
         };
   });
 
-  console.log(daily);
-
   return (
     <PDFViewer style={styles.viewer}>
       <Document>

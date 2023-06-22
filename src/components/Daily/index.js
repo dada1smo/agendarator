@@ -173,7 +173,6 @@ const linesA4 = [...Array(28).keys()];
 function Daily({ month, days, year, format, columns, theme }) {
   const lines = format === 'A5' ? linesA5 : linesA4;
   const styles = format === 'A5' ? stylesA5 : stylesA4;
-  console.log(days);
 
   return (
     <View style={{ position: 'relative', height: '100%' }}>

@@ -56,12 +56,14 @@ export async function getStaticProps({ params }) {
 
 export default function Agenda({ year, lastYear, nextYear }) {
   return (
-    <AgendaA4
-      year={year.year}
-      holidays={year.holidays}
-      lastYear={lastYear}
-      nextYear={nextYear}
-      columns={1}
-    />
+    <>
+      <AgendaA4
+        year={year.year}
+        holidays={year.holidays}
+        lastYear={lastYear}
+        nextYear={nextYear}
+        columns={1}
+      />
+    </>
   );
 }

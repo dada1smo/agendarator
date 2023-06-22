@@ -4,62 +4,62 @@
     {
       "month": 1,
       "day": 1,
-      "name": "Confraternização Universal"
+      "holiday": "Confraternização Universal"
     },
     {
       "month": 2,
       "day": 9,
-      "name": "Carnaval"
+      "holiday": "Carnaval"
     },
     {
       "month": 3,
       "day": 26,
-      "name": "Sexta-feira Santa"
+      "holiday": "Sexta-feira Santa"
     },
     {
       "month": 3,
       "day": 28,
-      "name": "Domingo de Páscoa"
+      "holiday": "Domingo de Páscoa"
     },
     {
       "month": 4,
       "day": 21,
-      "name": "Tiradentes"
+      "holiday": "Tiradentes"
     },
     {
       "month": 5,
       "day": 1,
-      "name": "Dia do Trabalhor"
+      "holiday": "Dia do Trabalhor"
     },
     {
       "month": 5,
       "day": 27,
-      "name": "Corpus Christi"
+      "holiday": "Corpus Christi"
     },
     {
       "month": 9,
       "day": 7,
-      "name": "Independência do Brasil"
+      "holiday": "Independência do Brasil"
     },
     {
       "month": 10,
       "day": 12,
-      "name": "Nossa Senhora Aparecida"
+      "holiday": "Nossa Senhora Aparecida"
     },
     {
       "month": 11,
       "day": 2,
-      "name": "Finados"
+      "holiday": "Finados"
     },
     {
       "month": 11,
       "day": 15,
-      "name": "Proclamação da República"
+      "holiday": "Proclamação da República"
     },
     {
       "month": 12,
       "day": 25,
-      "name": "Natal"
+      "holiday": "Natal"
     }
   ]
 }
