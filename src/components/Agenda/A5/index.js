@@ -142,7 +142,7 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear, theme = '' }) => {
           <A5Page>
             <DottedPage theme={theme} />
           </A5Page>
-          {/* {daily.map((item, index) => {
+          {daily.map((item, index) => {
             return (
               <Fragment key={index}>
                 <>
@@ -188,7 +188,7 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear, theme = '' }) => {
           })}
           <A5Page>
             <Credits year={year} />
-          </A5Page> */}
+          </A5Page>
         </Document>
       </PDFViewer>
     </>
