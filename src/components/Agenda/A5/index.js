@@ -102,7 +102,7 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear, theme = '' }) => {
           </A5Page>
           <A5Page />
           <A5Page>
-            <PersonalData format="a5" theme={theme} />
+            <PersonalData format="A5" theme={theme} />
           </A5Page>
           <A5Page>
             <DottedPage theme={theme} />
@@ -134,6 +134,8 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear, theme = '' }) => {
                     monthNumber={item.monthNumber}
                     weeks={item.weeks}
                     calendarDays={page}
+                    format="A5"
+                    theme={theme}
                   />
                 </A5Page>
               );
@@ -142,7 +144,7 @@ const AgendaA5 = ({ year, holidays, lastYear, nextYear, theme = '' }) => {
           <A5Page>
             <DottedPage theme={theme} />
           </A5Page>
-          {daily.map((item, index) => {
+          {[daily[0]].map((item, index) => {
             return (
               <Fragment key={index}>
                 <>
